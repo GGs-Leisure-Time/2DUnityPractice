@@ -16,8 +16,8 @@ public class GM : MonoBehaviour
 
     void CreateEnemy()
     {
-        Vector3 pos = new Vector3(Random.Range(-2.6f, 2.6f), transform.position.y, transform.position.z);
+        Vector3 pos = new Vector3(Random.Range(-2.6f, 2.6f), Random.Range(5.0f, 5.3f), transform.position.z);
 
-        Instantiate(Enemy[Random.Range(0, Enemy.Length)], transform.position, transform.rotation);
+        Instantiate(Enemy[Random.Range(0, Enemy.Length)],  pos, transform.rotation);
     }
 }

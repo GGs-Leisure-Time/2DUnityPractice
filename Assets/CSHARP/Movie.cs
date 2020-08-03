@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class Movie : MonoBehaviour
@@ -24,5 +24,10 @@ public class Movie : MonoBehaviour
         {
             Application.LoadLevel("Game");
         }
+    }
+
+    public void Skipbutton()
+    {
+        SceneManager.LoadScene("Game");
     }
 }

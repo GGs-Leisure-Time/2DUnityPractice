@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PLAYER : MonoBehaviour
 {
@@ -17,10 +18,43 @@ public class PLAYER : MonoBehaviour
     {
         鍵盤 = 0, 手機陀螺 = 1, 滑鼠 = 2, 手機搖桿 = 3
     }
+    [Header("玩家血量")]
+    public float PlayerHP;
+    //程式中計算玩家的血量數值
+    float scriptHP;
+    [Header("玩家血條")]
+    public Image HPBar;
+    [Header("打死敵機加分")]
+    public float AddScore;
+    float ScripScore;
+    public Text ScoreText;
+    //儲存分數的欄位
+    string SaveScore = "SVScore";
+
+
+    //子彈打到玩家 玩家扣血
+    public void Hurt(float hurt)
+    {
+        scriptHP -= hurt;
+        scriptHP = Mathf.Clamp(scriptHP, 0, PlayerHP);
+        HPBar.fillAmount = scriptHP / PlayerHP; 
+        if (scriptHP <= 0)
+        {
+            PlayerPrefs.SetFloat(SaveScore, ScripScore);
+            Application.LoadLevel("End Scene");
+        }
+    }
+
+    public void Score()
+    {
+        ScripScore += AddScore;
+        ScoreText.text = "Score:" + ScripScore;
+    }
 
     void Start()
     {
-        
+        //程式中的血量=屬性面板中調整的玩家血量數值
+        scriptHP = PlayerHP;
     }
 
     // Update is called once per frame
@@ -114,5 +148,7 @@ public class PLAYER : MonoBehaviour
     {
         MouseClick = false;
     }
+
+
 
 }
